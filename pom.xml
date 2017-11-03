@@ -18,14 +18,22 @@
   <modules>
     <module>hw1</module>
       <module>hw2</module>
+      <module>hw3</module>
   </modules>
 
   <properties>
     <java.version>1.8</java.version>
     <slf4j.version>1.7.25</slf4j.version>
+    <junit.version>4.12</junit.version>
   </properties>
 
   <dependencies>
+
+    <dependency>
+      <groupId>junit</groupId>
+      <artifactId>junit</artifactId>
+      <version>${junit.version}</version>
+    </dependency>
 
     <dependency>
       <groupId>org.slf4j</groupId>
@@ -38,6 +46,13 @@
       <artifactId>slf4j-simple</artifactId>
       <version>${slf4j.version}</version>
     </dependency>
+
+    <dependency>
+      <groupId>org.hamcrest</groupId>
+      <artifactId>hamcrest-all</artifactId>
+      <version>1.3</version>
+    </dependency>
+
 
   </dependencies>
 
