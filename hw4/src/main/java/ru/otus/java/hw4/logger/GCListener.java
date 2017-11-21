@@ -15,6 +15,7 @@ public class GCListener implements NotificationListener {
 
     private static int youngCount = 0;
     private static int oldCount = 0;
+    private static long totalDuration = 0L;
 
     @Override
     public void handleNotification(Notification notification, Object handback) {
@@ -27,12 +28,19 @@ public class GCListener implements NotificationListener {
 
             LOG.info(eventInfo.toString());
 
-            if(eventInfo.getGeneration().equals(GCEventInfo.Generation.YOUNG)) {
-                youngCount ++;
-            }
+            totalDuration += eventInfo.getDuration();
 
-            if(eventInfo.getGeneration().equals(GCEventInfo.Generation.OLD)) {
-                oldCount ++;
+            switch (eventInfo.getGeneration()) {
+                case OLD:
+                    oldCount ++;
+                    break;
+
+                case YOUNG:
+                    youngCount ++;
+                    break;
+
+                default:
+                    break;
             }
         }
     }
@@ -43,5 +51,9 @@ public class GCListener implements NotificationListener {
 
     public static int getOldCount() {
         return oldCount;
+    }
+
+    public static long getTotalDuration() {
+        return totalDuration;
     }
 }

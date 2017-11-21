@@ -1,36 +1,31 @@
-[main] INFO GCListener - hw4 started with pid = 5059@de-lt-kvasileva
-[Service Thread] INFO GCListener - Generation: YOUNG, GC name = ParNew, GC duration = 124
-[Service Thread] INFO GCListener - Generation: YOUNG, GC name = ParNew, GC duration = 46
-[Service Thread] INFO GCListener - Generation: OLD, GC name = ConcurrentMarkSweep, GC duration = 79
-[Service Thread] INFO GCListener - Generation: YOUNG, GC name = ParNew, GC duration = 49
-[Service Thread] INFO GCListener - Generation: OLD, GC name = ConcurrentMarkSweep, GC duration = 187
-[Service Thread] INFO GCListener - Generation: OLD, GC name = ConcurrentMarkSweep, GC duration = 155
-[Service Thread] INFO GCListener - Generation: OLD, GC name = ConcurrentMarkSweep, GC duration = 122
-[Service Thread] INFO GCListener - Generation: OLD, GC name = ConcurrentMarkSweep, GC duration = 131
+[main] INFO GCListener - hw4 started with pid = 14980@de-lt-kvasileva
+[Service Thread] INFO GCListener - Generation: YOUNG, GC name = ParNew, GC duration = 98
+[Service Thread] INFO GCListener - Generation: YOUNG, GC name = ParNew, GC duration = 25
+[Service Thread] INFO GCListener - Generation: OLD, GC name = ConcurrentMarkSweep, GC duration = 58
+[Service Thread] INFO GCListener - Generation: YOUNG, GC name = ParNew, GC duration = 40
+[Service Thread] INFO GCListener - Generation: OLD, GC name = ConcurrentMarkSweep, GC duration = 134
+[Service Thread] INFO GCListener - Generation: OLD, GC name = ConcurrentMarkSweep, GC duration = 94
+[Service Thread] INFO GCListener - Generation: OLD, GC name = ConcurrentMarkSweep, GC duration = 97
 [Service Thread] INFO GCListener - Generation: YOUNG, GC name = ParNew, GC duration = 0
-[Service Thread] INFO GCListener - Generation: OLD, GC name = ConcurrentMarkSweep, GC duration = 205
-[Service Thread] INFO GCListener - Generation: OLD, GC name = ConcurrentMarkSweep, GC duration = 222
-[Service Thread] INFO GCListener - Generation: OLD, GC name = ConcurrentMarkSweep, GC duration = 131
-[Service Thread] INFO GCListener - Generation: OLD, GC name = ConcurrentMarkSweep, GC duration = 133
-[Service Thread] INFO GCListener - Generation: OLD, GC name = ConcurrentMarkSweep, GC duration = 128
+[Service Thread] INFO GCListener - Generation: OLD, GC name = ConcurrentMarkSweep, GC duration = 160
+[Service Thread] INFO GCListener - Generation: OLD, GC name = ConcurrentMarkSweep, GC duration = 163
+[Service Thread] INFO GCListener - Generation: OLD, GC name = ConcurrentMarkSweep, GC duration = 109
+[Service Thread] INFO GCListener - Generation: OLD, GC name = ConcurrentMarkSweep, GC duration = 113
+[Service Thread] INFO GCListener - Generation: OLD, GC name = ConcurrentMarkSweep, GC duration = 110
 [Service Thread] INFO GCListener - Generation: YOUNG, GC name = ParNew, GC duration = 0
-[Service Thread] INFO GCListener - Generation: OLD, GC name = ConcurrentMarkSweep, GC duration = 224
-[Service Thread] INFO GCListener - Generation: OLD, GC name = ConcurrentMarkSweep, GC duration = 223
-[Service Thread] INFO GCListener - Generation: OLD, GC name = ConcurrentMarkSweep, GC duration = 147
-[Service Thread] INFO GCListener - Generation: OLD, GC name = ConcurrentMarkSweep, GC duration = 153
+[Service Thread] INFO GCListener - Generation: OLD, GC name = ConcurrentMarkSweep, GC duration = 165
+[Service Thread] INFO GCListener - Generation: OLD, GC name = ConcurrentMarkSweep, GC duration = 177
 [Service Thread] INFO GCListener - Generation: YOUNG, GC name = ParNew, GC duration = 0
-[Service Thread] INFO GCListener - Generation: OLD, GC name = ConcurrentMarkSweep, GC duration = 289
-[Service Thread] INFO GCListener - Generation: OLD, GC name = ConcurrentMarkSweep, GC duration = 223
-[main] ERROR GCListener - Cought OutOfMemoryError
-[Service Thread] INFO GCListener - Generation: OLD, GC name = ConcurrentMarkSweep, GC duration = 236
+[Service Thread] INFO GCListener - Generation: OLD, GC name = ConcurrentMarkSweep, GC duration = 196
+[main] ERROR GCListener - Caught OutOfMemoryError
+[Service Thread] INFO GCListener - Generation: OLD, GC name = ConcurrentMarkSweep, GC duration = 142
 java.lang.OutOfMemoryError: Java heap space
 	at java.lang.Integer.toString(Integer.java:403)
 	at java.lang.String.valueOf(String.java:3099)
-	at ru.otus.java.hw4.app.App.startApp(App.java:14)
+	at ru.otus.java.hw4.app.App.startApp(App.java:23)
 	at ru.otus.java.hw4.Main.main(Main.java:23)
-[Service Thread] INFO GCListener - Generation: OLD, GC name = ConcurrentMarkSweep, GC duration = 242
-[Service Thread] INFO GCListener - Generation: OLD, GC name = ConcurrentMarkSweep, GC duration = 192
-[Service Thread] INFO GCListener - Generation: OLD, GC name = ConcurrentMarkSweep, GC duration = 192
-[Service Thread] INFO GCListener - Generation: OLD, GC name = ConcurrentMarkSweep, GC duration = 227
-[Service Thread] INFO GCListener - Generation: OLD, GC name = ConcurrentMarkSweep, GC duration = 281
-[main] INFO GCLogger - Finishing executing: YOUNG: 6, OLD: 17
+[Service Thread] INFO GCListener - Generation: OLD, GC name = ConcurrentMarkSweep, GC duration = 201
+[Service Thread] INFO GCListener - Generation: OLD, GC name = ConcurrentMarkSweep, GC duration = 136
+[Service Thread] INFO GCListener - Generation: OLD, GC name = ConcurrentMarkSweep, GC duration = 139
+[Service Thread] INFO GCListener - Generation: OLD, GC name = ConcurrentMarkSweep, GC duration = 167
+[main] INFO GCLogger - Finishing executing: YOUNG: 6, OLD: 13, total duration: 1881ms, Total app live time: 23 s

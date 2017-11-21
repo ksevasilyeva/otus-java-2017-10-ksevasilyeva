@@ -1,20 +1,21 @@
-[main] INFO GCListener - hw4 started with pid = 5055@de-lt-kvasileva
+[main] INFO GCListener - hw4 started with pid = 14976@de-lt-kvasileva
 [Service Thread] INFO GCListener - Generation: YOUNG, GC name = PS Scavenge, GC duration = 10
 [Service Thread] INFO GCListener - Generation: YOUNG, GC name = PS Scavenge, GC duration = 14
-[Service Thread] INFO GCListener - Generation: YOUNG, GC name = PS Scavenge, GC duration = 18
-[Service Thread] INFO GCListener - Generation: OLD, GC name = PS MarkSweep, GC duration = 208
-[Service Thread] INFO GCListener - Generation: OLD, GC name = PS MarkSweep, GC duration = 270
-[Service Thread] INFO GCListener - Generation: OLD, GC name = PS MarkSweep, GC duration = 237
-[Service Thread] INFO GCListener - Generation: OLD, GC name = PS MarkSweep, GC duration = 320
-[Service Thread] INFO GCListener - Generation: OLD, GC name = PS MarkSweep, GC duration = 294
-[main] ERROR GCListener - Cought OutOfMemoryError
-[Service Thread] INFO GCListener - Generation: OLD, GC name = PS MarkSweep, GC duration = 263
+[Service Thread] INFO GCListener - Generation: YOUNG, GC name = PS Scavenge, GC duration = 17
+[Service Thread] INFO GCListener - Generation: OLD, GC name = PS MarkSweep, GC duration = 222
+[Service Thread] INFO GCListener - Generation: OLD, GC name = PS MarkSweep, GC duration = 273
+[Service Thread] INFO GCListener - Generation: OLD, GC name = PS MarkSweep, GC duration = 231
+[Service Thread] INFO GCListener - Generation: OLD, GC name = PS MarkSweep, GC duration = 312
+[Service Thread] INFO GCListener - Generation: OLD, GC name = PS MarkSweep, GC duration = 301
+[Service Thread] INFO GCListener - Generation: OLD, GC name = PS MarkSweep, GC duration = 271
+[main] ERROR GCListener - Caught OutOfMemoryError
 java.lang.OutOfMemoryError: GC overhead limit exceeded
 	at java.lang.Integer.toString(Integer.java:403)
 	at java.lang.String.valueOf(String.java:3099)
-	at ru.otus.java.hw4.app.App.startApp(App.java:14)
+	at ru.otus.java.hw4.app.App.startApp(App.java:23)
 	at ru.otus.java.hw4.Main.main(Main.java:23)
-[Service Thread] INFO GCListener - Generation: OLD, GC name = PS MarkSweep, GC duration = 210
-[Service Thread] INFO GCListener - Generation: OLD, GC name = PS MarkSweep, GC duration = 214
-[Service Thread] INFO GCListener - Generation: OLD, GC name = PS MarkSweep, GC duration = 225
-[main] INFO GCLogger - Finishing executing: YOUNG: 3, OLD: 6
+[Service Thread] INFO GCListener - Generation: OLD, GC name = PS MarkSweep, GC duration = 212
+[Service Thread] INFO GCListener - Generation: OLD, GC name = PS MarkSweep, GC duration = 216
+[Service Thread] INFO GCListener - Generation: OLD, GC name = PS MarkSweep, GC duration = 218
+[main] INFO GCLogger - Finishing executing: YOUNG: 3, OLD: 6, total duration: 1651ms, Total app live time: 29 s
+[Service Thread] INFO GCListener - Generation: OLD, GC name = PS MarkSweep, GC duration = 217
