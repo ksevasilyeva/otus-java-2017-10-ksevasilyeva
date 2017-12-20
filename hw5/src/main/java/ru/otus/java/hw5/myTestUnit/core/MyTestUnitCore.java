@@ -33,9 +33,9 @@ public class MyTestUnitCore {
             try {
                 LOG.info(">>> Start executing case: [" + testMethod.getName() + "] " );
                 Object testClass = ReflectionHelper.instantiate(clazz);
-                runMethod(testClass, beforeMethods.get(0));
+                runMethods(testClass, beforeMethods);
                 runMethod(testClass, testMethod);
-                runMethod(testClass, afterMethods.get(0));
+                runMethods(testClass, afterMethods);
                 logCaseResult(testMethod, TestStatus.PASSED, null);
                 generalTestClassResults.add(TestStatus.PASSED);
             } catch (InvocationTargetException err) {
@@ -56,6 +56,13 @@ public class MyTestUnitCore {
             return;
         }
         method.invoke(testClassInstance, methodParameters);
+    }
+
+    private static void runMethods(Object testClassInstance, List<Method> methods)
+        throws InvocationTargetException, IllegalAccessException {
+        for (Method method : methods) {
+            runMethod(testClassInstance, method, null);
+        }
     }
 
     public static void runClassesFromPackage(String packageRef) {

@@ -39,4 +39,9 @@ public class MyTestUnitTest {
     public void tearDown() {
         LOG.info("After method for  " + MyTestUnitTest.class.getName());
     }
+
+    @After
+    public void secondTearDown() {
+        LOG.info("Second After method for  " + MyTestUnitTest.class.getName());
+    }
 }
