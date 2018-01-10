@@ -8,12 +8,15 @@ import java.util.Arrays;
 import java.util.List;
 import java.util.Optional;
 import java.util.stream.IntStream;
+import java.util.stream.Stream;
 
 public class ATM {
 
     private static final Logger LOG = LoggerFactory.getLogger(ATM.class);
 
     public List<MoneyTokenCell> availableTokenCells = new ArrayList<>();
+
+    private AtmController atmController = new AtmController();
 
     public static ATM initATMWithDefaultCashAmount() {
         ATM newATM = new ATM();
@@ -39,15 +42,22 @@ public class ATM {
 
     public void depositCash(int... moneyTokens) {
         LOG.info("Cash deposit of Sum: [{}] requested. Current Balance: {}", IntStream.of(moneyTokens).sum(), getBalance());
-        if (AtmController.validateMoneyTokens(availableTokenCells, moneyTokens)) {
-            AtmController.depositMoneyTokens(availableTokenCells, moneyTokens);
+        if (atmController.validateMoneyTokens(availableTokenCells, moneyTokens)) {
+            atmController.depositMoneyTokens(availableTokenCells, moneyTokens);
             LOG.info("Successfully deposit Sum: [{}]. Current Balance: {}", IntStream.of(moneyTokens).sum(), getBalance());
         }
     }
 
+    public void depositCash(MoneyTokens... moneyTokens) {
+        int targetSum = Stream.of(moneyTokens).mapToInt(token -> token.getValue()).sum();
+        LOG.info("Cash deposit of Sum: [{}] requested. Current Balance: {}", targetSum, getBalance());
+        atmController.depositMoneyTokens(availableTokenCells, moneyTokens);
+        LOG.info("Successfully deposit Sum: [{}]. Current Balance: {}", targetSum, getBalance());
+    }
+
     public void withdrawCash(int requestedCash) {
         LOG.info("Cash withdrawal of Sum: [{}] requested. Current Balance: {}", requestedCash, getBalance());
-        if (AtmController.withdrawCash(availableTokenCells, requestedCash)) {
+        if (atmController.withdrawCash(availableTokenCells, requestedCash)) {
             LOG.info("Successfully withdrew sum of [{}]. Current Balance: {}", requestedCash, getBalance());
         } else {
             LOG.error("Withdrawal failed, request another sum of money");
@@ -55,7 +65,7 @@ public class ATM {
     }
 
     public MoneyTokenCell getTokenCellByValue(int value) {
-        Optional<MoneyTokenCell> cell = AtmController.getTokenCellByValue(availableTokenCells, value);
+        Optional<MoneyTokenCell> cell = atmController.getTokenCellByValue(availableTokenCells, value);
         if (cell.isPresent()) {
             return cell.get();
         } else {

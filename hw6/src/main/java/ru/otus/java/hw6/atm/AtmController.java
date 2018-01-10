@@ -7,12 +7,13 @@ import java.util.List;
 import java.util.Optional;
 import java.util.stream.Collectors;
 import java.util.stream.IntStream;
+import java.util.stream.Stream;
 
 public class AtmController {
 
     private static final Logger LOG = LoggerFactory.getLogger(AtmController.class);
 
-    public static boolean withdrawCash(List<MoneyTokenCell> availableTokenCells, int requestedCash) {
+    public boolean withdrawCash(List<MoneyTokenCell> availableTokenCells, int requestedCash) {
         if (requestedCash <= 0) {
             return false;
         }
@@ -29,7 +30,7 @@ public class AtmController {
         return true;
     }
 
-    public static int[] getMinMoneyTokens(List<MoneyTokenCell> availableTokenCells, int amount) {
+    public int[] getMinMoneyTokens(List<MoneyTokenCell> availableTokenCells, int amount) {
 
         //Reference: Dynamic programming with Igor Kleiner https://www.youtube.com/watch?v=vTXVsW26ayc
 
@@ -65,7 +66,7 @@ public class AtmController {
         return minimumCombination;
     }
 
-    public static boolean putInMoneyTokenCell(List<MoneyTokenCell> availableTokenCells, int token) {
+    public boolean putInMoneyTokenCell(List<MoneyTokenCell> availableTokenCells, int token) {
         Optional<MoneyTokenCell> tokenCell = getTokenCellByValue(availableTokenCells, token);
         if (tokenCell.isPresent()) {
             tokenCell.get().addMoneyTokenToCell();
@@ -76,13 +77,17 @@ public class AtmController {
         }
     }
 
-    public static void depositMoneyTokens(List<MoneyTokenCell> availableTokenCells, int[] moneyTokens) {
+    public void depositMoneyTokens(List<MoneyTokenCell> availableTokenCells, int[] moneyTokens) {
         for (int token : moneyTokens) {
-            AtmController.putInMoneyTokenCell(availableTokenCells, token);
+            putInMoneyTokenCell(availableTokenCells, token);
         }
     }
 
-    public static boolean validateMoneyTokens(List<MoneyTokenCell> availableTokenCells, int[] moneyTokens) {
+    public void depositMoneyTokens(List<MoneyTokenCell> availableTokenCells, MoneyTokens... moneyTokens) {
+        depositMoneyTokens(availableTokenCells, Stream.of(moneyTokens).mapToInt(token -> token.getValue()).toArray());
+    }
+
+    public boolean validateMoneyTokens(List<MoneyTokenCell> availableTokenCells, int[] moneyTokens) {
         List<Integer> cellValues = availableTokenCells.stream()
             .map(cell -> cell.getTokenValue())
             .collect(Collectors.toList());
@@ -95,7 +100,7 @@ public class AtmController {
         return true;
     }
 
-    public static boolean validateMoneyTokensAvailability(List<MoneyTokenCell> availableTokenCells, int[] moneyTokens) {
+    public boolean validateMoneyTokensAvailability(List<MoneyTokenCell> availableTokenCells, int[] moneyTokens) {
         // Ограничение - не выдаем деньги если не хватает монет для выдачи в заданном минимальном количестве.
         // Иначе надо было хранить все минимальные комбинации...
         for (int token : moneyTokens) {
@@ -111,7 +116,7 @@ public class AtmController {
         return true;
     }
 
-    public static Optional<MoneyTokenCell> getTokenCellByValue(List<MoneyTokenCell> availableTokenCells, int value) {
+    public Optional<MoneyTokenCell> getTokenCellByValue(List<MoneyTokenCell> availableTokenCells, int value) {
         return availableTokenCells.stream()
             .filter(cell -> cell.getTokenValue() == value)
             .findFirst();
