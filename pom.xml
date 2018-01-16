@@ -22,6 +22,7 @@
       <module>hw4</module>
       <module>hw5</module>
       <module>hw6</module>
+      <module>hw7</module>
   </modules>
 
   <properties>
@@ -64,6 +65,12 @@
         <groupId>org.reflections</groupId>
         <artifactId>reflections</artifactId>
         <version>${reflections.version}</version>
+      </dependency>
+
+      <dependency>
+        <groupId>com.google.guava</groupId>
+        <artifactId>guava</artifactId>
+        <version>23.6-jre</version>
       </dependency>
     </dependencies>
   </dependencyManagement>

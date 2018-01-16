@@ -7,12 +7,17 @@ public class MoneyTokenCell {
 
     private static final Logger LOG = LoggerFactory.getLogger(MoneyTokenCell.class);
 
-    private int maxCapacity;
+    private int maxCapacity = 5000;
     private int tokenAmount;
     private MoneyTokens moneyTokenValue;
 
     public MoneyTokenCell(int maxCapacity, int tokenAmount, MoneyTokens moneyTokenValue) {
         this.maxCapacity = maxCapacity;
+        this.tokenAmount = tokenAmount;
+        this.moneyTokenValue = moneyTokenValue;
+    }
+
+    public MoneyTokenCell(int tokenAmount, MoneyTokens moneyTokenValue) {
         this.tokenAmount = tokenAmount;
         this.moneyTokenValue = moneyTokenValue;
     }
@@ -24,6 +29,11 @@ public class MoneyTokenCell {
     public void addMoneyTokenToCell() {
         LOG.info("Proceeding Money token of value [{}]", moneyTokenValue.getValue());
         tokenAmount++;
+    }
+
+    public void addMoneyTokenToCell(int sum) {
+        LOG.info("Proceeding Money token of value [{}]", moneyTokenValue.getValue());
+        tokenAmount = tokenAmount + sum;
     }
 
     public void withdrawTokenFromCell() {

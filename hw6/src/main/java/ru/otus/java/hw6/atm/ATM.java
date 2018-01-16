@@ -3,10 +3,12 @@ package ru.otus.java.hw6.atm;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
-import java.util.ArrayList;
 import java.util.Arrays;
-import java.util.List;
+import java.util.HashMap;
+import java.util.HashSet;
+import java.util.Map;
 import java.util.Optional;
+import java.util.Set;
 import java.util.stream.IntStream;
 import java.util.stream.Stream;
 
@@ -14,24 +16,44 @@ public class ATM {
 
     private static final Logger LOG = LoggerFactory.getLogger(ATM.class);
 
-    public List<MoneyTokenCell> availableTokenCells = new ArrayList<>();
+    public Set<MoneyTokenCell> availableTokenCells = new HashSet<>();
 
-    private AtmController atmController = new AtmController();
+    public AtmState initAtmState;
 
-    public static ATM initATMWithDefaultCashAmount() {
-        ATM newATM = new ATM();
-        Arrays.asList(MoneyTokens.values())
-            .forEach(token ->
-                newATM.availableTokenCells.add(new MoneyTokenCell(5000, 100, token)));
-        return newATM;
+    private AtmController atmController = new AtmController(this);
+
+    public ATM() {
+        initAtmState = new AtmState(new HashMap<>());
+        initTokenCells();
     }
 
-    public static ATM initAtmWithoutMoney() {
-        ATM newATM = new ATM();
+    public ATM(Map<MoneyTokens, Integer> initCash) {
+        initTokenCells();
+        fillCellsWithCashAmount(initCash);
+        initAtmState = new AtmState(initCash);
+    }
+
+    public ATM resetAtmToInitState() {
+        initTokenCells();
+        fillCellsWithCashAmount(initAtmState.getState());
+        return this;
+    }
+
+    private void fillCellsWithCashAmount(Map<MoneyTokens, Integer> cash) {
+        if(cash.isEmpty()) {
+            return;
+        }
+        cash.entrySet().forEach(token -> availableTokenCells.stream()
+                .filter(cell -> cell.getMoneyToken().equals(token.getKey()))
+                .findFirst()
+                .get()
+                .addMoneyTokenToCell(token.getValue()));
+    }
+
+    private void initTokenCells() {
+        availableTokenCells = new HashSet<>();
         Arrays.asList(MoneyTokens.values())
-            .forEach(token ->
-                newATM.availableTokenCells.add(new MoneyTokenCell(5000, 0, token)));
-        return newATM;
+            .forEach(token -> availableTokenCells.add(new MoneyTokenCell(0, token)));
     }
 
     public int getBalance() {
@@ -42,8 +64,8 @@ public class ATM {
 
     public void depositCash(int... moneyTokens) {
         LOG.info("Cash deposit of Sum: [{}] requested. Current Balance: {}", IntStream.of(moneyTokens).sum(), getBalance());
-        if (atmController.validateMoneyTokens(availableTokenCells, moneyTokens)) {
-            atmController.depositMoneyTokens(availableTokenCells, moneyTokens);
+        if (atmController.validateMoneyTokens(moneyTokens)) {
+            atmController.depositMoneyTokens(moneyTokens);
             LOG.info("Successfully deposit Sum: [{}]. Current Balance: {}", IntStream.of(moneyTokens).sum(), getBalance());
         }
     }
@@ -51,13 +73,13 @@ public class ATM {
     public void depositCash(MoneyTokens... moneyTokens) {
         int targetSum = Stream.of(moneyTokens).mapToInt(token -> token.getValue()).sum();
         LOG.info("Cash deposit of Sum: [{}] requested. Current Balance: {}", targetSum, getBalance());
-        atmController.depositMoneyTokens(availableTokenCells, moneyTokens);
+        atmController.depositMoneyTokens(moneyTokens);
         LOG.info("Successfully deposit Sum: [{}]. Current Balance: {}", targetSum, getBalance());
     }
 
     public void withdrawCash(int requestedCash) {
         LOG.info("Cash withdrawal of Sum: [{}] requested. Current Balance: {}", requestedCash, getBalance());
-        if (atmController.withdrawCash(availableTokenCells, requestedCash)) {
+        if (atmController.withdrawCash(requestedCash)) {
             LOG.info("Successfully withdrew sum of [{}]. Current Balance: {}", requestedCash, getBalance());
         } else {
             LOG.error("Withdrawal failed, request another sum of money");
@@ -65,7 +87,7 @@ public class ATM {
     }
 
     public MoneyTokenCell getTokenCellByValue(int value) {
-        Optional<MoneyTokenCell> cell = atmController.getTokenCellByValue(availableTokenCells, value);
+        Optional<MoneyTokenCell> cell = atmController.getTokenCellByValue(value);
         if (cell.isPresent()) {
             return cell.get();
         } else {

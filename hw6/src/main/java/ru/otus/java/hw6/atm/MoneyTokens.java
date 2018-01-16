@@ -6,7 +6,7 @@ public enum MoneyTokens {
     TWO_RUBLES(2),
     TEN_RUBLES(10),
     HUNDRED_RUBLES(100),
-    FIVE_HUNDRED_RUBLES(1000);
+    FIVE_HUNDRED_RUBLES(500);
 
     private final int moneyTokenValue;
 

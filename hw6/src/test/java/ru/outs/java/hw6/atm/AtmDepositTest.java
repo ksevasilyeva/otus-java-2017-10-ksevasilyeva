@@ -11,7 +11,7 @@ public class AtmDepositTest {
 
     @Test
     public void shouldDepositOneToken() {
-        ATM atm = ATM.initAtmWithoutMoney();
+        ATM atm = new ATM();
         atm.depositCash(10);
 
         assertThat(atm.getBalance(), is(10));
@@ -20,7 +20,7 @@ public class AtmDepositTest {
 
     @Test
     public void shouldDepositOneMoneyToken() {
-        ATM atm = ATM.initAtmWithoutMoney();
+        ATM atm = new ATM();
         atm.depositCash(MoneyTokens.TEN_RUBLES);
 
         assertThat(atm.getBalance(), is(10));
@@ -29,7 +29,7 @@ public class AtmDepositTest {
 
     @Test
     public void shouldDepositMultipleTokens() {
-        ATM atm = ATM.initAtmWithoutMoney();
+        ATM atm = new ATM();
         atm.depositCash(10, 100, 1);
 
         assertThat(atm.getBalance(), is(111));
@@ -41,7 +41,7 @@ public class AtmDepositTest {
 
     @Test
     public void shouldDepositMultipleMoneyTokens() {
-        ATM atm = ATM.initAtmWithoutMoney();
+        ATM atm = new ATM();
         atm.depositCash(MoneyTokens.TEN_RUBLES, MoneyTokens.HUNDRED_RUBLES, MoneyTokens.ONE_RUBLE);
 
         assertThat(atm.getBalance(), is(111));
@@ -53,7 +53,7 @@ public class AtmDepositTest {
 
     @Test
     public void shouldNotProceedInvalidToken() {
-        ATM atm = ATM.initAtmWithoutMoney();
+        ATM atm = new ATM();
         atm.depositCash(11);
 
         assertThat(atm.getBalance(), is(0));
@@ -61,7 +61,7 @@ public class AtmDepositTest {
 
     @Test
     public void shouldNotProceedSumWithInvalidToken() {
-        ATM atm = ATM.initAtmWithoutMoney();
+        ATM atm = new ATM();
         atm.depositCash(10, 1, 9);
 
         assertThat(atm.getBalance(), is(0));
