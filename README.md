@@ -1,6 +1,6 @@
-# otus-java-2017-10-ksevasilyeva
+# otus-java-2017-11-ksevasilyeva
 
-Группа 2017-10
+Группа 2017-11
 
 ### Автор
 Ksenia Vasileva (Ксения Васильева)
