@@ -1,4 +1,6 @@
-package ru.otus.java.hw6.atm;
+package ru.otus.java.hw6.atm.commands;
+
+import ru.otus.java.hw6.atm.Atm;
 
 public class DepositCommand implements Command {
 

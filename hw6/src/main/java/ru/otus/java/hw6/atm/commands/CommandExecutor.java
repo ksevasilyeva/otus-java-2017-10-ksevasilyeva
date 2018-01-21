@@ -1,4 +1,6 @@
-package ru.otus.java.hw6.atm;
+package ru.otus.java.hw6.atm.commands;
+
+import ru.otus.java.hw6.atm.Atm;
 
 import java.util.SortedMap;
 import java.util.TreeMap;
