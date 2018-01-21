@@ -19,7 +19,7 @@ public class CommandExecutor {
     }
 
     public int getBalanceForAtm(Atm atm) {
-        atm.toInitialState();
+        atm.toInitialStateInternal();
         state.values()
             .stream()
             .filter(command -> command.getAtm() == atm)

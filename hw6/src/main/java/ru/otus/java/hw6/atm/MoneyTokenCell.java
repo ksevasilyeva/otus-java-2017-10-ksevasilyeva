@@ -27,21 +27,18 @@ public class MoneyTokenCell {
     }
 
     public void addMoneyTokenToCell() {
-        LOG.info("Proceeding Money token of value [{}]", moneyTokenValue.getValue());
         tokenAmount++;
     }
 
     public void addMoneyTokenToCell(int sum) {
-        LOG.info("Proceeding Money token of value [{}]", moneyTokenValue.getValue());
         tokenAmount = tokenAmount + sum;
     }
 
     public void withdrawTokenFromCell() {
         if (tokenAmount - 1 >= 0) {
-            LOG.info("Withdrawing token of value {}", moneyTokenValue.getValue());
             tokenAmount --;
         } else {
-            LOG.info("Cannot withdraw token of {} value: not enough money tokens", moneyTokenValue);
+            throw new RuntimeException(String.format("Cannot withdraw token of %s value: not enough money tokens", moneyTokenValue));
         }
     }
 

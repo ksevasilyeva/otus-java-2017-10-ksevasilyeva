@@ -1,8 +1,5 @@
 package ru.otus.java.hw6.atm;
 
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
-
 import java.util.Arrays;
 import java.util.HashMap;
 import java.util.HashSet;
@@ -16,26 +13,34 @@ import java.util.stream.Stream;
 
 public class Atm {
 
-    private static final Logger LOG = LoggerFactory.getLogger(Atm.class);
+    public Set<MoneyTokenCell> availableTokenCells = new HashSet<>();
 
     private CommandExecutor commandExecutor = new CommandExecutor();
 
-    public Set<MoneyTokenCell> availableTokenCells = new HashSet<>();
-
     private Map<MoneyTokens, Integer> initState = new HashMap<>();
+
+    private AtmListener atmListener = new AtmListener();
 
     public Atm() {
         initTokenCells();
+        atmListener.newAtmCreated(0);
     }
 
     public Atm(Map<MoneyTokens, Integer> initCash) {
         initTokenCells();
         fillCellsWithCashAmount(initCash);
         initState = initCash;
+        atmListener.newAtmCreated(getInternalBalance());
     }
 
 
     public void toInitialState() {
+        initTokenCells();
+        fillCellsWithCashAmount(initState);
+        atmListener.atmReseted();
+    }
+
+    public void toInitialStateInternal() {
         initTokenCells();
         fillCellsWithCashAmount(initState);
     }
@@ -50,12 +55,12 @@ public class Atm {
 
     public void internalWithdrawCash(int requestedCash) {
         if (requestedCash <= 0) {
-            throw new RuntimeException("Failed to withdraw");
+            throw new RuntimeException();
         }
         int[] moneyTokensToWithdraw = getMinMoneyTokens(requestedCash);
 
         if (!validateMoneyTokensAvailability(moneyTokensToWithdraw)) {
-            throw new RuntimeException("Failed to withdraw");
+            throw new RuntimeException();
         }
 
         for (int token : moneyTokensToWithdraw) {
@@ -67,9 +72,10 @@ public class Atm {
     public boolean withdrawCash(int requestedCash) {
         try {
             commandExecutor.execute(new WithdrawCommand(requestedCash, this));
+            atmListener.cashWithdrawed(requestedCash);
             return true;
         } catch (RuntimeException e) {
-            LOG.error(e.getMessage());
+            atmListener.operationFailed("Failed to withdraw amount of: " + requestedCash);
             return false;
         }
     }
@@ -113,9 +119,10 @@ public class Atm {
     public boolean putInMoneyTokenCell(int token) {
         try {
             commandExecutor.execute(new DepositCommand(token, this));
+            atmListener.cashDeposit(token);
             return true;
         } catch (RuntimeException e) {
-            LOG.error(e.getMessage());
+            atmListener.operationFailed("Failed to deposit: " + token);
             return false;
         }
     }
@@ -137,7 +144,8 @@ public class Atm {
 
         for (int token : moneyTokens) {
             if (!cellValues.contains(token)) {
-                LOG.error("Cash contains unsupported Money token: [{}]. Returning back all Money Tokens", token);
+                atmListener.operationFailed(
+                    String.format("Cash contains unsupported Money token: [%s]. Returning back all Money Tokens", token));
                 return false;
             }
         }
@@ -197,17 +205,12 @@ public class Atm {
     }
 
     public void depositCash(int... moneyTokens) {
-        LOG.info("Cash deposit of Sum: [{}] requested. Current Balance: {}", IntStream.of(moneyTokens).sum(), getBalance());
         if (validateMoneyTokens(moneyTokens)) {
             depositMoneyTokens(moneyTokens);
-            LOG.info("Successfully deposit Sum: [{}]. Current Balance: {}", IntStream.of(moneyTokens).sum(), getBalance());
         }
     }
 
     public void depositCash(MoneyTokens... moneyTokens) {
-        int targetSum = Stream.of(moneyTokens).mapToInt(token -> token.getValue()).sum();
-        LOG.info("Cash deposit of Sum: [{}] requested. Current Balance: {}", targetSum, getBalance());
         depositMoneyTokens(moneyTokens);
-        LOG.info("Successfully deposit Sum: [{}]. Current Balance: {}", targetSum, getBalance());
     }
 }
