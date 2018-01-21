@@ -1,7 +1,7 @@
 package ru.outs.java.hw6.atm;
 
 import org.junit.Test;
-import ru.otus.java.hw6.atm.ATM;
+import ru.otus.java.hw6.atm.Atm;
 import ru.otus.java.hw6.atm.MoneyTokens;
 
 import static com.google.common.collect.ImmutableBiMap.of;
@@ -12,7 +12,7 @@ public class AtmWithdrawalTest {
 
     @Test
     public void shouldNotWithdrawWhenNotEnoughTokens() {
-        ATM atm = new ATM();
+        Atm atm = new Atm();
         atm.withdrawCash(10);
 
         assertThat(atm.getBalance(), is(0));
@@ -20,7 +20,7 @@ public class AtmWithdrawalTest {
 
     @Test
     public void shouldWithdrawOneMoneyToken() {
-        ATM atm = new ATM(of(MoneyTokens.HUNDRED_RUBLES, 1, MoneyTokens.TEN_RUBLES, 20));
+        Atm atm = new Atm(of(MoneyTokens.HUNDRED_RUBLES, 1, MoneyTokens.TEN_RUBLES, 20));
         int atmBalance = atm.getBalance();
         int tokenCellBalance = atm.getTokenCellByValue(10).getBalance();
 
@@ -32,7 +32,7 @@ public class AtmWithdrawalTest {
 
     @Test
     public void shouldWithdrawMultipleMoneyTokens() {
-        ATM atm = new ATM(of(MoneyTokens.HUNDRED_RUBLES, 10, MoneyTokens.TWO_RUBLES, 100));
+        Atm atm = new Atm(of(MoneyTokens.HUNDRED_RUBLES, 10, MoneyTokens.TWO_RUBLES, 100));
         int atmBalance = atm.getBalance();
         int tokenCellBalance100 = atm.getTokenCellByValue(100).getBalance();
         int tokenCellBalance2 = atm.getTokenCellByValue(2).getBalance();
@@ -46,7 +46,7 @@ public class AtmWithdrawalTest {
 
     @Test
     public void shouldNotWithdrawInvalidToken() {
-        ATM atm = new ATM(of(MoneyTokens.HUNDRED_RUBLES, 10, MoneyTokens.FIVE_HUNDRED_RUBLES, 2));
+        Atm atm = new Atm(of(MoneyTokens.HUNDRED_RUBLES, 10, MoneyTokens.FIVE_HUNDRED_RUBLES, 2));
         int atmBalance = atm.getBalance();
 
         atm.withdrawCash(0);

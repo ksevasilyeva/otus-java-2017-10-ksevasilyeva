@@ -1,35 +1,30 @@
 package ru.otus.java.hw7.department;
 
-import ru.otus.java.hw6.atm.ATM;
+import ru.otus.java.hw6.atm.Atm;
 
 import java.util.HashSet;
 import java.util.Set;
 
-public class ATMDepartment implements Department {
+public class ATMDepartment {
 
-    private Set<ATM> atmSet = new HashSet<>();
+    private Set<Atm> atmSet = new HashSet<>();
 
-    @Override
-    public void addATM(ATM atm) {
+    public void addATM(Atm atm) {
         atmSet.add(atm);
     }
 
-    @Override
-    public Set<ATM> getATMs() {
+    public Set<Atm> getATMs() {
         return atmSet;
     }
 
-    @Override
     public int getTotalBalance() {
-        return atmSet.stream().mapToInt(ATM::getBalance).sum();
+        return atmSet.stream().mapToInt(Atm::getBalance).sum();
     }
 
-    @Override
     public void resetAllATM() {
         atmSet.forEach(atm -> atm.resetAtmToInitState());
     }
 
-    @Override
     public int numberOfAtms(){
         return atmSet.size();
     }

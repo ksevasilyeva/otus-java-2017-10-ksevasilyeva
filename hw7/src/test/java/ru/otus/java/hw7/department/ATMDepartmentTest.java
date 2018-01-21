@@ -1,7 +1,7 @@
 package ru.otus.java.hw7.department;
 
 import org.junit.Test;
-import ru.otus.java.hw6.atm.ATM;
+import ru.otus.java.hw6.atm.Atm;
 import ru.otus.java.hw6.atm.MoneyTokens;
 
 import static com.google.common.collect.ImmutableBiMap.of;
@@ -16,9 +16,9 @@ public class ATMDepartmentTest {
         ATMDepartment department = new ATMDepartment();
         assertThat(department.getATMs(), is(empty()));
 
-        department.addATM(new ATM(of(MoneyTokens.FIVE_HUNDRED_RUBLES, 5, MoneyTokens.ONE_RUBLE, 1000)));
-        department.addATM(new ATM(of(MoneyTokens.TEN_RUBLES, 100, MoneyTokens.ONE_RUBLE, 10)));
-        department.addATM(new ATM(of(MoneyTokens.TWO_RUBLES, 5, MoneyTokens.TEN_RUBLES, 10)));
+        department.addATM(new Atm(of(MoneyTokens.FIVE_HUNDRED_RUBLES, 5, MoneyTokens.ONE_RUBLE, 1000)));
+        department.addATM(new Atm(of(MoneyTokens.TEN_RUBLES, 100, MoneyTokens.ONE_RUBLE, 10)));
+        department.addATM(new Atm(of(MoneyTokens.TWO_RUBLES, 5, MoneyTokens.TEN_RUBLES, 10)));
         assertThat(department.numberOfAtms(), is(3));
     }
 
@@ -27,16 +27,16 @@ public class ATMDepartmentTest {
         ATMDepartment department = new ATMDepartment();
         assertThat(department.getTotalBalance(), is(0));
 
-        department.addATM(new ATM(of(MoneyTokens.TEN_RUBLES, 5, MoneyTokens.ONE_RUBLE, 1000)));
-        department.addATM(new ATM(of(MoneyTokens.TWO_RUBLES, 5, MoneyTokens.TEN_RUBLES, 10)));
+        department.addATM(new Atm(of(MoneyTokens.TEN_RUBLES, 5, MoneyTokens.ONE_RUBLE, 1000)));
+        department.addATM(new Atm(of(MoneyTokens.TWO_RUBLES, 5, MoneyTokens.TEN_RUBLES, 10)));
         assertThat(department.getTotalBalance(), is(1160));
     }
 
     @Test
     public void departmentShouldResetAllAtmsToInit() {
         ATMDepartment department = new ATMDepartment();
-        ATM atm1 = new ATM(of(MoneyTokens.TEN_RUBLES, 5, MoneyTokens.ONE_RUBLE, 1000));
-        ATM atm2 = new ATM(of(MoneyTokens.TWO_RUBLES, 5, MoneyTokens.TEN_RUBLES, 10));
+        Atm atm1 = new Atm(of(MoneyTokens.TEN_RUBLES, 5, MoneyTokens.ONE_RUBLE, 1000));
+        Atm atm2 = new Atm(of(MoneyTokens.TWO_RUBLES, 5, MoneyTokens.TEN_RUBLES, 10));
 
         department.addATM(atm1);
         department.addATM(atm2);
