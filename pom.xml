@@ -16,7 +16,7 @@
   </developers>
 
   <modules>
-    <module>hw1</module>
+      <module>hw1</module>
       <module>hw2</module>
       <module>hw3</module>
       <module>hw4</module>
@@ -25,6 +25,7 @@
       <module>hw7</module>
       <module>hw8</module>
       <module>hw9</module>
+      <module>hw10</module>
   </modules>
 
   <properties>
