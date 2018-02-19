@@ -7,7 +7,7 @@ import javax.persistence.Id;
 import javax.persistence.MappedSuperclass;
 
 @MappedSuperclass
-class DataSet {
+public class DataSet {
 
     @Id
     @Column(name = "id")
@@ -21,7 +21,7 @@ class DataSet {
         this.id = id;
     }
 
-    long getId() {
+    public long getId() {
         return id;
     }
 
