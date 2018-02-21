@@ -59,15 +59,16 @@ public class CacheEngineImpl<V> implements CacheEngine<V> {
 
     @Override
     public V get(String key) {
-        CacheEntity<V> value = elements.get(key);
-        if (value != null && value.getValue() != null) {
+        CacheEntity<V> cacheElement = elements.get(key);
+        V cacheElementValue = cacheElement.getValue();
+        if (cacheElement != null && cacheElementValue != null) {
             hit++;
         } else {
             miss++;
             elements.remove(key);
             return null;
         }
-        return value.getValue();
+        return cacheElementValue;
     }
 
     @Override
