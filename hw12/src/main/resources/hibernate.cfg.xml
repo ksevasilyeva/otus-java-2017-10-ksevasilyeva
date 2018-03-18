@@ -17,5 +17,6 @@
         <mapping class="ru.otus.java.hw10.data.UserDataSet"/>
         <mapping class="ru.otus.java.hw10.data.AddressDataSet"/>
         <mapping class="ru.otus.java.hw10.data.PhoneDataSet"/>
+        <mapping class="ru.otus.java.hw12.data.AccountDataSet"/>
     </session-factory>
 </hibernate-configuration>
