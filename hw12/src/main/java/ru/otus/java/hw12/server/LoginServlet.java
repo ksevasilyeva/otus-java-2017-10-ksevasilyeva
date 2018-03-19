@@ -5,7 +5,6 @@ import org.slf4j.LoggerFactory;
 import ru.otus.java.hw12.data.AccountDataSet;
 import ru.otus.java.hw12.db.AccountDBService;
 
-import javax.servlet.http.Cookie;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
@@ -25,7 +24,7 @@ public class LoginServlet extends HttpServlet {
     @Override
     protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws  IOException {
         if (validateUser(req.getParameter("login"), req.getParameter("password"))) {
-            resp.addCookie(new Cookie("user","authorised"));
+            req.getSession().setAttribute("user", "authorised");
             resp.sendRedirect("/stat");
         } else {
             resp.getWriter().println(TemplateProcessor.instance().getPage("loginFailed.html", new HashMap<>()));

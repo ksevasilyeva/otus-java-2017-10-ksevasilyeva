@@ -21,13 +21,18 @@ public class StatisticServlet extends HttpServlet {
 
     @Override
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws IOException {
-        resp.setStatus(HttpStatus.OK_200);
-        Map<String, Object> pageVariables = createPageVariablesMap();
+        Object userAttr = req.getSession().getAttribute("user");
+        if (userAttr != null && userAttr.equals("authorised")) {
+            resp.setStatus(HttpStatus.OK_200);
+            Map<String, Object> pageVariables = createPageVariablesMap();
 
-        resp.getWriter().println(TemplateProcessor.instance().getPage("stat.html", pageVariables));
+            resp.getWriter().println(TemplateProcessor.instance().getPage("stat.html", pageVariables));
 
-        resp.setContentType("text/html;charset=utf-8");
-        resp.setStatus(HttpServletResponse.SC_OK);
+            resp.setContentType("text/html;charset=utf-8");
+            resp.setStatus(HttpServletResponse.SC_OK);
+        } else {
+            resp.setStatus(HttpServletResponse.SC_UNAUTHORIZED);
+        }
     }
 
     private Map<String, Object> createPageVariablesMap() {
