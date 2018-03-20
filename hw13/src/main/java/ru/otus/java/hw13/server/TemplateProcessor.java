@@ -1,4 +1,4 @@
-package ru.otus.java.hw12.server;
+package ru.otus.java.hw13.server;
 
 import freemarker.template.Configuration;
 import freemarker.template.TemplateException;
@@ -11,7 +11,7 @@ import java.util.Map;
 
 public class TemplateProcessor {
 
-    private static final String HTML_DIR = "ru.otus.java.hw13/tmpl";
+    private static final String HTML_DIR = "ru/otus/java/hw13/tmpl";
     private static TemplateProcessor instance = new TemplateProcessor();
 
     private final Configuration configuration;

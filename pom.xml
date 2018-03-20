@@ -37,6 +37,7 @@
     <junit.version>4.12</junit.version>
     <reflections.version>0.9.11</reflections.version>
     <spring.version>5.0.3.RELEASE</spring.version>
+    <jetty.version>9.4.8.v20171121</jetty.version>
   </properties>
 
   <dependencies>
