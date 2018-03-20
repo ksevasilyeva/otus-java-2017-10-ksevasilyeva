@@ -28,6 +28,7 @@
       <module>hw10</module>
       <module>hw11</module>
       <module>hw12</module>
+      <module>hw13</module>
   </modules>
 
   <properties>
@@ -35,6 +36,7 @@
     <slf4j.version>1.7.25</slf4j.version>
     <junit.version>4.12</junit.version>
     <reflections.version>0.9.11</reflections.version>
+    <spring.version>5.0.3.RELEASE</spring.version>
   </properties>
 
   <dependencies>
