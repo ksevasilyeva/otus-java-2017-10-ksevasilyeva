@@ -4,6 +4,10 @@ import org.eclipse.jetty.http.HttpStatus;
 import ru.otus.java.hw10.data.DataSet;
 import ru.otus.java.hw11.cache.CacheEngine;
 
+import javax.servlet.ServletConfig;
+import javax.servlet.ServletContext;
+import javax.servlet.ServletException;
+import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
@@ -11,12 +15,17 @@ import java.io.IOException;
 import java.util.HashMap;
 import java.util.Map;
 
+@WebServlet("/stat")
 public class StatisticServlet extends HttpServlet {
 
-    private final CacheEngine<DataSet> cache;
+    private CacheEngine<DataSet> cache;
+    private ServletContext servletContext;
 
-    public StatisticServlet(CacheEngine<DataSet> cacheEngine) {
-        this.cache = cacheEngine;
+    @Override
+    public void init(ServletConfig config) throws ServletException {
+        super.init(config);
+        servletContext = config.getServletContext();
+        cache = (CacheEngine) servletContext.getAttribute("cache");
     }
 
     @Override

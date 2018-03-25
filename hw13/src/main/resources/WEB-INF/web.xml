@@ -1,7 +1,0 @@
-<?xml version="1.0" encoding="ISO-8859-1"?>
-
-<web-app>
-    <display-name>ru.otus.java.hw13-war</display-name>
-    <description>Web archive for Cache Statistics server</description>
-
-</web-app>

@@ -10,6 +10,7 @@
     <modelVersion>4.0.0</modelVersion>
 
     <artifactId>hw13</artifactId>
+    <packaging>war</packaging>
 
     <dependencies>
 
@@ -67,14 +68,18 @@
         <finalName>${project.name}</finalName>
         <plugins>
             <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
                 <artifactId>maven-war-plugin</artifactId>
+                <version>3.2.0</version>
+            </plugin>
+            <plugin>
+                <groupId>org.eclipse.jetty</groupId>
+                <artifactId>jetty-maven-plugin</artifactId>
+                <version>9.4.8.v20171121</version>
                 <configuration>
-                    <webXml>src/main/resources/WEB-INF/web.xml</webXml>
-                    <webResources>
-                        <resource>
-                            <directory>public_html</directory>
-                        </resource>
-                    </webResources>
+                    <httpConnector>
+                        <port>8093</port>
+                    </httpConnector>
                 </configuration>
             </plugin>
         </plugins>
