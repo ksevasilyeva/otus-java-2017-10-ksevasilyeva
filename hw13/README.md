@@ -2,10 +2,11 @@
 
 hw #13
 
-### Run app:
-````
-cd hw13
-mvn clean war:war
-mvn jetty:run-war
-````
-http://localhost:8093/
+WAR
+
+1. Build a war for task 12
+2. implement Cache, DBService as Spring beans and inject them to servlets
+3. Run upp in an external web-service
+
+
+
