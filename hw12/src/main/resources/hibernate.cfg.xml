@@ -5,11 +5,11 @@
 <hibernate-configuration>
     <session-factory>
         <property name="hibernate.dialect">org.hibernate.dialect.MySQL5Dialect</property>
-        <property name="connection.url">jdbc:mysql://localhost:3306/otus_java</property>
+        <property name="connection.url">jdbc:mysql://localhost:3306/otus_java?serverTimezone=UTC</property>
         <property name="connection.driver_class">com.mysql.cj.jdbc.Driver</property>
         <property name="connection.username">ksenia</property>
         <property name="connection.password">ksenia</property>
-        <property name="hibernate.show_sql">true</property>
+        <property name="hibernate.show_sql">false</property>
         <property name="hibernate.format_sql">true</property>
         <property name="hbm2ddl.auto">create</property>
         <property name="enable_lazy_load_no_trans">true</property>
