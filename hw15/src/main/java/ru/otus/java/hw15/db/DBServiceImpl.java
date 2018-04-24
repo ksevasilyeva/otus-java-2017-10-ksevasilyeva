@@ -2,7 +2,7 @@ package ru.otus.java.hw15.db;
 
 import ru.otus.java.hw11.cache.CacheEngine;
 import ru.otus.java.hw15.app.DBService;
-import ru.otus.java.hw15.app.MessageSystemContext;
+import ru.otus.java.hw15.messages.MessageSystemContext;
 import ru.otus.java.hw15.messageSystem.Address;
 import ru.otus.java.hw15.messageSystem.MessageSystem;
 

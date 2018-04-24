@@ -11,11 +11,10 @@ import ru.otus.java.hw11.db.CacheDbService;
 import ru.otus.java.hw12.UserDataSetGenerator;
 import ru.otus.java.hw15.app.DBService;
 import ru.otus.java.hw15.app.FrontendService;
-import ru.otus.java.hw15.app.MessageSystemContext;
+import ru.otus.java.hw15.messages.MessageSystemContext;
 import ru.otus.java.hw15.db.DBServiceImpl;
 import ru.otus.java.hw15.frontEnd.FrontendServiceImpl;
 import ru.otus.java.hw15.messageSystem.Address;
-import ru.otus.java.hw15.messageSystem.MessageSystem;
 
 public class App {
 
@@ -24,8 +23,7 @@ public class App {
 
     public static void main(String[] args) throws Exception {
 
-        MessageSystem messageSystem = new MessageSystem();
-        MessageSystemContext context = new MessageSystemContext(messageSystem);
+        MessageSystemContext context = new MessageSystemContext();
         Address frontAddress = new Address("FrontEnd");
         context.setFrontAddress(frontAddress);
         Address dbAddress = new Address("DbCache");
@@ -40,7 +38,7 @@ public class App {
         DBService cacheService = new DBServiceImpl(dbAddress, context, cacheEngine);
         cacheService.init();
 
-        messageSystem.start();
+        context.getMessageSystem().start();
 
         Server server = WebServer.configureWebServer(PORT, frontendService, cacheEngine);
         server.start();
@@ -50,6 +48,6 @@ public class App {
         new Thread(dataGenerator).start();
 
         server.join();
-        messageSystem.dispose();
+        context.getMessageSystem().dispose();
     }
 }
