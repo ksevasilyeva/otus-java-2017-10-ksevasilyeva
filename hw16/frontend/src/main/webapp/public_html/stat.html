@@ -1,0 +1,18 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+        <script src="ws-stat.js" type="text/javascript"></script>
+        <title>statistic for cache</title>
+    </head>
+    <body onload='statisticsSocket.init();'>
+        <div class="container">
+            <p>This is hw16:</p>
+            <h3>This page reloads automatically every 2 seconds:</h3>
+            <p>Cache size: <span id="cacheSize">${cacheSize}</span> </p>
+            <p>Hits: <span id="cacheHit">${cacheHit}</span></p>
+            <p>Miss: <span id="cacheMiss">${cacheMiss}</span></p>
+            </div>
+    </body>
+</html>

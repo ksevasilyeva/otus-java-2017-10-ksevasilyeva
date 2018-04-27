@@ -1,0 +1,32 @@
+﻿<!DOCTYPE html>
+<html>
+    <head>
+        <title>Cache statistics admin page</title>
+        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+
+    </head>
+    <body>
+        <div class="container">
+            <div class="row justify-content-center align-items-center" style="height:100vh">
+                <div class="col-4">
+                    <div class="card">
+                        <div class="card-body">
+                            <form method = "POST">
+                                <div class="form-group">
+                                    <input type=text class="form-control" name="login">
+                                </div>
+                                <div class="form-group">
+                                    <input type="password" class="form-control" name="password">
+                                </div>
+                                <div class="btn-group">
+                                    <button type="submit" id="sendlogin" class="btn btn-primary" formaction="/stat">LogIn</button>
+                                    <button type="submit" id="signup" class="btn btn-primary" formaction="/signup">SignIn</button>
+                                </div>
+                            </form>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </body>
+</html>
